@@ -63,10 +63,11 @@ document.getElementById('input-form').addEventListener('submit', function() {
     
     
     isValid(input.value).then((valid) => {
+
         if (valid) {
-            document.getElementById(100).classList.add('border-green-200');
+            document.getElementById(amount+1).classList.add('border-green-200');
         } else {
-            document.getElementById(100).classList.add('border-red-200');
+            document.getElementById(amount+1).classList.add('border-red-200');
         }
     });
     
