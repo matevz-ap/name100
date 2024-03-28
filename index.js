@@ -55,7 +55,7 @@ document.getElementById('input-form').addEventListener('submit', function() {
     const guesess = document.getElementById('guesses');
     if (guesess.childElementCount < 1) {
         startStop();
-    } else if (guesess.childElementCount >= 5) {
+    } else if (guesess.childElementCount >= 100) {
         running = false;
     }
     
