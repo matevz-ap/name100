@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/daisyui@2.6.0/dist/full.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="navbar bg-base-100">
+        <div class="navbar-start">
+        </div>
+        <div class="navbar-center">
+          <a class="btn btn-ghost text-2xl">Name <b id="amount" class="mx-1">100</b> Women</a>
+        </div>
+        <div class="navbar-end">
+        </div>
+    </div>
+    <main>
+        <div class="container-xl mx-auto p-4 justify-center flex">
+            <div class="text-center" style="min-width: 500px;">
+                <div class="mb-4">
+                    <div id="display">00:00:00:000</div>
+                    <form action="" id="input-form" class="flex items-center justify-center">
+                        <input type="text" name="name" id="name" placeholder="Type and click enter" class="input input-bordered w-full max-w-xs" />
+                        <button class="btn btn-square btn-outline btn-error ms-3" type="button" id="reset">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <div id="guesses" class="block">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="index.js"></script>
+</html>
