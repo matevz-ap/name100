@@ -1,6 +1,7 @@
 let startTime;
 let running = false;
 let amount = 100;
+let madeGuesses = [];
 
 function startStop() {
     if (!running) {
@@ -35,17 +36,16 @@ async function isValid(name) {
     let response = await fetch(`https://api.wikimedia.org/core/v1/wikipedia/en/page/${cleanName}/bare`, {
         method: 'GET',
     });
-    console.log(response);
     return response.status === 200;
 }
 
 function addGuess(name) {
     const guesess = document.getElementById('guesses');
     let new_guess = document.createElement("div");
-    new_guess.classList = 'mb-4 border-4 p-3 rounded-lg bg-base-300 text-lg';
+    new_guess.classList = 'mb-4 border-3 p-3 rounded-full alert text-lg px-4';
     new_guess.innerHTML = name; 
     new_guess.id = amount;
-    guesess.appendChild(new_guess);
+    guesess.prepend(new_guess);
 }
 
 document.getElementById('input-form').addEventListener('submit', function() {
@@ -58,16 +58,25 @@ document.getElementById('input-form').addEventListener('submit', function() {
     } else if (guesess.childElementCount >= 100) {
         running = false;
     }
+
+    if (madeGuesses.includes(input.value)) {
+        const alert = document.getElementById('already-guessed');   
+        alert.innerHTML = `You have already guessed ${input.value}!`;
+        alert.toggleAttribute('hidden');
+        setTimeout(function() { alert.toggleAttribute('hidden'); }, 3000);
+        input.value = '';
+        return;
+    }
     
     addGuess(input.value);
+    madeGuesses.push(input.value);
     
     
     isValid(input.value).then((valid) => {
-
         if (valid) {
-            document.getElementById(amount+1).classList.add('border-green-200');
+            document.getElementById(amount+1).classList.add('border', 'border-green-200');
         } else {
-            document.getElementById(amount+1).classList.add('border-red-200');
+            document.getElementById(amount+1).classList.add('border', 'border-error');
         }
     });
     
@@ -82,4 +91,5 @@ document.getElementById('reset').addEventListener('click', function() {
     guesess.innerHTML = '';
     amount = 100;
     document.getElementById('amount').innerHTML = amount;
+    madeGuesses = []; 
 });
