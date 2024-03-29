@@ -50,7 +50,9 @@ function addGuess(name) {
 
 document.getElementById('input-form').addEventListener('submit', function() {
     event.preventDefault();
+
     var input = document.getElementById('name');
+    if (!input.value) return;
 
     const guesess = document.getElementById('guesses');
     if (guesess.childElementCount < 1) {
@@ -61,17 +63,19 @@ document.getElementById('input-form').addEventListener('submit', function() {
 
     if (madeGuesses.includes(input.value)) {
         const alert = document.getElementById('already-guessed');   
-        alert.innerHTML = `You have already guessed ${input.value}!`;
+        alert.innerHTML = `You already guessed ${input.value}!`;
         alert.toggleAttribute('hidden');
         setTimeout(function() { alert.toggleAttribute('hidden'); }, 3000);
         input.value = '';
         return;
     }
+
+    let cleanName = input.value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     
-    addGuess(input.value);
-    madeGuesses.push(input.value);
+    addGuess(cleanName);
+    madeGuesses.push(cleanName);
     
-    isValid(input.value).then((valid) => {
+    isValid(cleanName).then((valid) => {
         if (valid) {
             document.getElementById(amount+1).classList.add('border', 'border-green-200');
         } else {
