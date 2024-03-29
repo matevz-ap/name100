@@ -70,6 +70,7 @@ document.getElementById('input-form').addEventListener('submit', function() {
     
     addGuess(input.value);
     madeGuesses.push(input.value);
+    console.log(madeGuesses);
     
     
     isValid(input.value).then((valid) => {
